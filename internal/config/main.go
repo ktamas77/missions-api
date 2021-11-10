@@ -7,7 +7,6 @@ import (
 	"gitlab.com/distributed_lab/kit/comfig"
 	"gitlab.com/distributed_lab/kit/kv"
 	"gitlab.com/distributed_lab/kit/pgdb"
-	"gitlab.com/tokend/connectors/signed"
 )
 
 type Config interface {

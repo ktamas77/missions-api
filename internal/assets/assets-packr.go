@@ -5,4 +5,4 @@
 // and any other packr generated files.
 package assets
 
-import _ "github.com/Alien-Worlds/missions-api/internal/assets/packrd"
+import _ "Users/tamaskalman/dev/dacoco/missions-api/internal/assets/packrd"
