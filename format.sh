@@ -10,4 +10,3 @@ go fmt ./internal/service/checker-svc/checker
 go fmt ./internal/service/handlers
 go fmt ./internal/service/helpers
 go fmt ./internal/service/requests
-
