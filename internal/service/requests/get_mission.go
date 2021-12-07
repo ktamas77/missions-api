@@ -2,8 +2,8 @@ package requests
 
 import (
 	"encoding/json"
-	validation "github.com/go-ozzo/ozzo-validation"
 	"github.com/Alien-Worlds/missions-api/resources"
+	validation "github.com/go-ozzo/ozzo-validation"
 	"gitlab.com/distributed_lab/logan/v3/errors"
 	"net/http"
 )
@@ -18,7 +18,7 @@ func NewGetMissionRequest(r *http.Request) (resources.MissionResponse, error) {
 
 func ValidateGetMissionRequest(r resources.MissionResponse) error {
 	errs := validation.Errors{
-		"/data/":                      validation.Validate(r.Data, validation.Required),
+		"/data/":                validation.Validate(r.Data, validation.Required),
 		"/data/data/attributes": validation.Validate(r.Data.ID),
 	}
 

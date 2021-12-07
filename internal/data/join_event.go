@@ -10,11 +10,10 @@ type JoinEventQ interface {
 	Update(JoinEvent JoinEvent) (JoinEvent, error)
 
 	FilterById(join_event_id string) JoinEventQ
-
 }
 
-type JoinEvent struct{
-	TransactionId       string `db:"transaction_id" structs:"transaction_id"`
+type JoinEvent struct {
+	TransactionId string `db:"transaction_id" structs:"transaction_id"`
 	// Explorer          string `db:"explorer_address" structs:"explorer_address"`
 	// Mission           int64 `db:"mission" structs:"mission"`
 	// // Withdrawn         bool `db:"withdrawn" structs:"withdrawn"`

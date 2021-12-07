@@ -205,7 +205,7 @@ func (s *Service) processMissionCreated(ctx context.Context, event types.Log, sp
 }
 
 func (s *Service) processMissionJoined(ctx context.Context, event types.Log, spaceshipToken *SpaceshipStaking.SpaceshipStaking) error {
-	s.log.Info("MissionJoined: ",event.TxHash.String(), " block: ", event.BlockNumber )
+	s.log.Info("MissionJoined: ", event.TxHash.String(), " block: ", event.BlockNumber)
 	missionJoined, err := spaceshipToken.ParseMissionJoined(event)
 	if err != nil {
 		return errors.Wrap(err, "failed parse mission joined")
@@ -223,11 +223,10 @@ func (s *Service) processMissionJoined(ctx context.Context, event types.Log, spa
 
 	if joinEventDB == nil {
 		transaction, _, err := s.bscClient.TransactionByHash(ctx, event.TxHash)
-		s.log.Info("MissionJoined insert: ",event.TxHash.String(), " block: ", event.BlockNumber )
+		s.log.Info("MissionJoined insert: ", event.TxHash.String(), " block: ", event.BlockNumber)
 
-		
 		tmp := transaction.Value()
-		
+
 		if tmp != nil {
 			stakeBNB = tmp
 		} else {
@@ -246,7 +245,6 @@ func (s *Service) processMissionJoined(ctx context.Context, event types.Log, spa
 			// StakeTLM:   missionFromContract.SpaceshipCost.Int64() * missionJoined.SpaceshipCount.Int64(),
 			// StakeBNB: common.Big0.Uint64(),
 		}
-		
 
 		_, err = s.joinEventQ.Insert(*joinEventDB)
 
@@ -254,7 +252,7 @@ func (s *Service) processMissionJoined(ctx context.Context, event types.Log, spa
 			return errors.Wrap(err, "failed insert to db, joinEvent")
 		}
 	} else {
-		s.log.Info("MissionJoined duplicate: ",event.TxHash.String(), " block: ", event.BlockNumber )
+		s.log.Info("MissionJoined duplicate: ", event.TxHash.String(), " block: ", event.BlockNumber)
 
 		return errors.Wrap(err, "joinEvent already exists - avoiding duplicate processing of same event")
 	}
@@ -304,7 +302,7 @@ func (s *Service) processMissionJoined(ctx context.Context, event types.Log, spa
 	}
 
 	if explorer != nil {
-		explorer.TotalStakeTLM = explorer.TotalStakeTLM + missionFromContract.SpaceshipCost.Int64() * missionJoined.SpaceshipCount.Int64()
+		explorer.TotalStakeTLM = explorer.TotalStakeTLM + missionFromContract.SpaceshipCost.Int64()*missionJoined.SpaceshipCount.Int64()
 		explorer.TotalStakeBNB = explorer.TotalStakeBNB + stakeBNB.Int64()
 		_, err = s.explorerQ.Update(*explorer)
 

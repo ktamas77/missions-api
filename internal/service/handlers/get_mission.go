@@ -31,7 +31,7 @@ func GetMissionById(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if mission == nil{
+	if mission == nil {
 		ape.Render(w, problems.NotFound())
 		return
 	}
@@ -42,4 +42,3 @@ func GetMissionById(w http.ResponseWriter, r *http.Request) {
 
 	ape.Render(w, result)
 }
-

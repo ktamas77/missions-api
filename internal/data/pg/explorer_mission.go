@@ -2,9 +2,9 @@ package pg
 
 import (
 	"database/sql"
+	"github.com/Alien-Worlds/missions-api/internal/data"
 	"github.com/Masterminds/squirrel"
 	"github.com/fatih/structs"
-	"github.com/Alien-Worlds/missions-api/internal/data"
 	"gitlab.com/distributed_lab/kit/pgdb"
 )
 

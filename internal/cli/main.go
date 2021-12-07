@@ -12,59 +12,59 @@ import (
 )
 
 func Run(args []string) bool {
-    log := logan.New()
+	log := logan.New()
 
-    defer func() {
-        if rvr := recover(); rvr != nil {
-            log.WithRecover(rvr).Error("app panicked")
-        }
-    }()
+	defer func() {
+		if rvr := recover(); rvr != nil {
+			log.WithRecover(rvr).Error("app panicked")
+		}
+	}()
 
-    cfg := config.New(kv.MustFromEnv())
-    log = cfg.Log()
+	cfg := config.New(kv.MustFromEnv())
+	log = cfg.Log()
 
-    app := kingpin.New("missions-api", "")
+	app := kingpin.New("missions-api", "")
 
-    runCmd := app.Command("run", "run command")
-    serviceCmd := runCmd.Command("service", "run service") // you can insert custom help
-    apiCmd := runCmd.Command("api", "run api")
+	runCmd := app.Command("run", "run command")
+	serviceCmd := runCmd.Command("service", "run service") // you can insert custom help
+	apiCmd := runCmd.Command("api", "run api")
 
-    migrateCmd := app.Command("migrate", "migrate command")
-    migrateUpCmd := migrateCmd.Command("up", "migrate db up")
-    migrateDownCmd := migrateCmd.Command("down", "migrate db down")
+	migrateCmd := app.Command("migrate", "migrate command")
+	migrateUpCmd := migrateCmd.Command("up", "migrate db up")
+	migrateDownCmd := migrateCmd.Command("down", "migrate db down")
 
-    // custom commands go here...
+	// custom commands go here...
 
-    cmd, err := app.Parse(args[1:])
-    if err != nil {
-        log.WithError(err).Error("failed to parse arguments")
-        return false
-    }
+	cmd, err := app.Parse(args[1:])
+	if err != nil {
+		log.WithError(err).Error("failed to parse arguments")
+		return false
+	}
 
-    ctx := context.Background()
+	ctx := context.Background()
 
-    switch cmd {
-    case apiCmd.FullCommand():
-        service.Run(cfg)
-        return true
-    case serviceCmd.FullCommand():
-        svc := checker.New(cfg)
-        svc.Run(ctx)
-        return true
-    case migrateUpCmd.FullCommand():
-        err = MigrateUp(cfg)
-    case migrateDownCmd.FullCommand():
-        err = MigrateDown(cfg)
-    default:
-        log.Errorf("unknown command %s", cmd)
-        return false
-    }
+	switch cmd {
+	case apiCmd.FullCommand():
+		service.Run(cfg)
+		return true
+	case serviceCmd.FullCommand():
+		svc := checker.New(cfg)
+		svc.Run(ctx)
+		return true
+	case migrateUpCmd.FullCommand():
+		err = MigrateUp(cfg)
+	case migrateDownCmd.FullCommand():
+		err = MigrateDown(cfg)
+	default:
+		log.Errorf("unknown command %s", cmd)
+		return false
+	}
 
-    if err != nil {
-        log.WithError(err).Error("failed to exec cmd")
-        return false
-    }
+	if err != nil {
+		log.WithError(err).Error("failed to exec cmd")
+		return false
+	}
 
-    //<- ctx.Done()
-    return true
+	//<- ctx.Done()
+	return true
 }

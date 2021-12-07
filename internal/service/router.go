@@ -1,11 +1,11 @@
 package service
 
 import (
-	"github.com/go-chi/chi"
 	"github.com/Alien-Worlds/missions-api/internal/config"
 	"github.com/Alien-Worlds/missions-api/internal/data/pg"
 	"github.com/Alien-Worlds/missions-api/internal/service/handlers"
 	"github.com/Alien-Worlds/missions-api/internal/service/helpers"
+	"github.com/go-chi/chi"
 	"gitlab.com/distributed_lab/ape"
 )
 

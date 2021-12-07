@@ -10,7 +10,7 @@ import (
 
 func (c *config) BSC() bscClient.Client {
 	envResult, isSet := os.LookupEnv("RPC_END_POINT")
-	if(isSet) {
+	if isSet {
 		dial, err := bscClient.Dial(envResult)
 		if err != nil {
 			panic(errors.Wrap(err, "failed to dial bscClient"))

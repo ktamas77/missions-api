@@ -13,12 +13,12 @@ type ExplorerMissionQ interface {
 	FilterByExplorer(explorerId int64) ExplorerMissionQ
 }
 
-type ExplorerMission struct{
+type ExplorerMission struct {
 	ExplorerMissionId uint64 `db:"explorer_mission_id" structs:"-"`
-	Explorer          int64 `db:"explorer" structs:"explorer"`
-	Mission           int64 `db:"mission" structs:"mission"`
-	Withdrawn         bool `db:"withdrawn" structs:"withdrawn"`
-	NumberShips       int64 `db:"number_ships" structs:"number_ships"`
-	TotalStakeTLM     int64 `db:"total_stake_tlm" structs:"total_stake_tlm"`
-	TotalStakeBNB     int64 `db:"total_stake_bnb" structs:"total_stake_bnb"`
+	Explorer          int64  `db:"explorer" structs:"explorer"`
+	Mission           int64  `db:"mission" structs:"mission"`
+	Withdrawn         bool   `db:"withdrawn" structs:"withdrawn"`
+	NumberShips       int64  `db:"number_ships" structs:"number_ships"`
+	TotalStakeTLM     int64  `db:"total_stake_tlm" structs:"total_stake_tlm"`
+	TotalStakeBNB     int64  `db:"total_stake_bnb" structs:"total_stake_bnb"`
 }

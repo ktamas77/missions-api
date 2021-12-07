@@ -42,8 +42,8 @@ func New(getter kv.Getter) Config {
 	return &config{
 		// getter:     getter,
 		// Listenerer: comfig.NewListenerer(getter),
-		Clienter:   signed.NewClienter(getter),
-		Logger:     comfig.NewLogger(getter, comfig.LoggerOpts{}),
-		Databaser:  pgdb.NewDatabaser(getter),
+		Clienter:  signed.NewClienter(getter),
+		Logger:    comfig.NewLogger(getter, comfig.LoggerOpts{}),
+		Databaser: pgdb.NewDatabaser(getter),
 	}
 }

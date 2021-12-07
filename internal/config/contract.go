@@ -11,10 +11,10 @@ type ContractAddress struct {
 
 func (c *config) Contract() ContractAddress {
 	envResult, isSet := os.LookupEnv("CONTRACT_ADDRESS")
-	if(isSet) {
+	if isSet {
 		fmt.Printf("Reading from Contract address: %+v\n", envResult)
 
-		return ContractAddress{ envResult }
+		return ContractAddress{envResult}
 	} else {
 		panic("CONTRACT_ADDRESS no set")
 	}

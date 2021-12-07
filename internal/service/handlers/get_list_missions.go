@@ -30,7 +30,6 @@ func GetListMissions(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-
 	result := resources.MissionListResponse{
 		Data: newMissionsList(missions),
 	}
@@ -49,23 +48,23 @@ func newMissionsList(missions []data.Mission) []resources.Mission {
 func newMissionModel(mission data.Mission) resources.Mission {
 	return resources.Mission{
 		Key: resources.Key{
-			ID: strconv.FormatUint(mission.MissionId, 10),
+			ID:   strconv.FormatUint(mission.MissionId, 10),
 			Type: resources.MISSION,
 		},
 		Attributes: resources.MissionAttributes{
-			BoardingTime: mission.BoardingTime,
-			Description:  mission.Description,
-			Duration:     mission.Duration,
-			EndTime:      mission.EndTime,
-			LaunchTime:   mission.LaunchTime,
-			MissionPower: mission.MissionPower,
-			MissionType:  mission.MissionType,
-			Name:         mission.Name,
-			NftContract: common.BytesToAddress(mission.NftContract).String(),
-			NftTokenURI: mission.NftTokenURI,
-			Reward: mission.Reward,
+			BoardingTime:  mission.BoardingTime,
+			Description:   mission.Description,
+			Duration:      mission.Duration,
+			EndTime:       mission.EndTime,
+			LaunchTime:    mission.LaunchTime,
+			MissionPower:  mission.MissionPower,
+			MissionType:   mission.MissionType,
+			Name:          mission.Name,
+			NftContract:   common.BytesToAddress(mission.NftContract).String(),
+			NftTokenURI:   mission.NftTokenURI,
+			Reward:        mission.Reward,
 			SpaceshipCost: mission.SpaceshipCost,
-			TotalShips:	mission.TotalShips,
+			TotalShips:    mission.TotalShips,
 		},
 	}
 }

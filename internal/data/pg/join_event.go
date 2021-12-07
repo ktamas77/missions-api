@@ -79,4 +79,3 @@ func (d joinEventQ) FilterById(transaction_id string) data.JoinEventQ {
 	d.sql = d.sql.Where(squirrel.Like{"transaction_id": transaction_id})
 	return &d
 }
-

@@ -42,7 +42,7 @@ func (d *missionQ) Get() (*data.Mission, error) {
 func (d *missionQ) Select(query pgdb.OffsetPageParams) ([]data.Mission, error) {
 	var result []data.Mission
 
-	err := d.db.Select(&result, query.ApplyTo( d.sql,"mission_id"))
+	err := d.db.Select(&result, query.ApplyTo(d.sql, "mission_id"))
 	if err == sql.ErrNoRows {
 		return nil, nil
 	}

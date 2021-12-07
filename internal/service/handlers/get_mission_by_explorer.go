@@ -26,7 +26,7 @@ func GetMissionsByExplorerAddress(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if explorer == nil{
+	if explorer == nil {
 		helpers.Log(r).WithError(err).Error("not found explorer from db")
 		ape.Render(w, problems.NotFound())
 		return
